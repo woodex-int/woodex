@@ -1,0 +1,278 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════
+   WOODEX INTERIOR — MASTER TOKENS
+   Ultra-Luxury · Baroque-meets-Modern · Heavy Gold on Deep Dark
+   ═══════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── GOLD SYSTEM ─────────────────────────────────── */
+  --color-brass: #c9a84c;        /* Brand Gold — CTAs, borders, accents */
+  --color-brass-soft: #e2c97e;   /* Hover / highlight gold */
+  --color-brass-deep: #a8842a;   /* Active / pressed gold */
+  --color-gold-shimmer: #f0d98a; /* Shimmer highlight */
+  --color-gold-muted: #8b6914;   /* Footer tones */
+
+  /* ── DEEP DARK BACKGROUNDS ───────────────────────── */
+  --color-espresso: #0a0a0a;     /* True black — main dark */
+  --color-coal: #111111;         /* Section alternator */
+  --color-carbon: #161616;       /* Cards / panels on dark */
+  --color-overlay: #0d0d0d;      /* Nav overlay */
+
+  /* ── CRISP LIGHT SURFACES ────────────────────────── */
+  --color-cream: #faf7f2;        /* Soft luxury white */
+  --color-ivory: #f8f5ef;        /* Light sections */
+  --color-parchment: #e8e4de;    /* Marble neutral */
+  --color-champagne: #f5e6c8;    /* Luxury champagne */
+  --color-sand: #cfc6b4;
+  --color-linen: #b9ae97;
+
+  /* ── TEXT ────────────────────────────────────────── */
+  --color-ink: #1a1410;          /* Body/headlines on light */
+  --color-umber: #5c5347;        /* Subtext on light */
+  --color-fog: #7a7063;          /* Captions / metadata */
+  --color-bronze: #8c5e2a;
+
+  /* ── TYPOGRAPHY ──────────────────────────────────── */
+  --font-display: var(--font-cormorant), "Playfair Display", Georgia, serif;
+  --font-heading: var(--font-playfair), "Cormorant Garamond", Georgia, serif;
+  --font-body: var(--font-montserrat), "Helvetica Neue", Arial, sans-serif;
+
+  /* ── TYPE SCALE (display) ────────────────────────── */
+  --text-display-2xl: clamp(4rem, 8vw, 9rem);
+  --text-display-xl: clamp(3rem, 6vw, 7rem);
+  --text-display-lg: clamp(2.5rem, 5vw, 5.5rem);
+  --text-display-md: clamp(2rem, 4vw, 4rem);
+  --text-display-sm: clamp(1.75rem, 3vw, 3rem);
+
+  /* ── MOTION ──────────────────────────────────────── */
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-scroll-cue: scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  --animate-gold-shimmer: gold-shimmer 6s linear infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes scroll-cue {
+    0% { transform: scaleY(0); transform-origin: top; }
+    45% { transform: scaleY(1); transform-origin: top; }
+    55% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+  @keyframes gold-shimmer {
+    to { background-position: 200% center; }
+  }
+}
+
+/* ── GRADIENT TOKENS ─────────────────────────────── */
+:root {
+  --gradient-gold-horizontal: linear-gradient(90deg, #a8842a 0%, #e2c97e 50%, #a8842a 100%);
+  --gradient-gold-vertical: linear-gradient(180deg, #c9a84c 0%, #8b6914 100%);
+  --gradient-hero-overlay: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.85) 100%);
+  --gradient-card-overlay: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.95) 100%);
+  --gradient-shimmer: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.15), transparent);
+  --gradient-section-dark: linear-gradient(135deg, #0a0a0a 0%, #161610 100%);
+  --gradient-marble: linear-gradient(135deg, #f8f5ef 0%, #e8e4de 50%, #f8f5ef 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-brass);
+  color: var(--color-espresso);
+}
+
+/* Thin elegant scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-ivory); }
+::-webkit-scrollbar-thumb { background: var(--color-linen); border-radius: 8px; border: 2px solid var(--color-ivory); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-brass); }
+
+/* ── Typography helpers ─────────────────────────── */
+.headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-brass);
+}
+.eyebrow::before {
+  content: "";
+  display: block;
+  width: 2.75rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.75;
+}
+.eyebrow--plain::before { display: none; }
+
+.prose-lux p {
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  color: var(--color-umber);
+  font-weight: 300;
+}
+.prose-lux p + p { margin-top: 1.25rem; }
+
+/* Gold gradient shimmering text (hero accents) */
+.gold-shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #a8842a 0%,
+    #f0d98a 30%,
+    #e2c97e 50%,
+    #c9a84c 70%,
+    #a8842a 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gold-shimmer 7s linear infinite;
+}
+
+/* ── Buttons & links ────────────────────────────── */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.05rem 2.4rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-brass {
+  background: var(--color-brass);
+  color: var(--color-espresso);
+  border: 1px solid var(--color-brass);
+}
+.btn-brass:hover {
+  background: var(--color-brass-soft);
+  border-color: var(--color-brass-soft);
+  color: var(--color-espresso);
+  box-shadow: 0 10px 40px -8px rgba(201, 168, 76, 0.55);
+}
+.btn-outline-light {
+  background: transparent;
+  color: var(--color-cream);
+  border: 1px solid rgba(250, 247, 242, 0.45);
+}
+.btn-outline-light:hover {
+  background: var(--color-cream);
+  color: var(--color-espresso);
+  border-color: var(--color-cream);
+}
+.btn-outline-dark {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid rgba(26, 20, 16, 0.35);
+}
+.btn-outline-dark:hover {
+  background: var(--color-espresso);
+  color: var(--color-cream);
+  border-color: var(--color-espresso);
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-brass-deep);
+  transition: gap 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s;
+}
+.link-arrow:hover { gap: 1rem; color: var(--color-gold-muted); }
+
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  padding-bottom: 2px;
+}
+.link-underline:hover { background-size: 100% 1px; }
+
+/* ── Texture & media ────────────────────────────── */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.38'/%3E%3C/svg%3E");
+}
+
+.media-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-coal);
+}
+.media-frame img {
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.media-zoom:hover .media-frame img,
+.media-frame.media-zoom:hover img {
+  transform: scale(1.06);
+}
+
+.vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.15) 40%, rgba(10, 10, 10, 0.65) 100%);
+  pointer-events: none;
+}
+
+/* Giant outlined gold watermark (footer) */
+.outline-word {
+  -webkit-text-stroke: 1px rgba(201, 168, 76, 0.32);
+  color: transparent;
+}
+
+/* Vertical side label */
+.side-label {
+  writing-mode: vertical-rl;
+  letter-spacing: 0.5em;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+}
+
+/* Luxury gradient helpers */
+.bg-gradient-section-dark { background: var(--gradient-section-dark); }
+.bg-gradient-marble { background: var(--gradient-marble); }
+.bg-gradient-gold { background: var(--gradient-gold-horizontal); }
+.border-gold-fade { border-image: var(--gradient-gold-horizontal) 1; }
